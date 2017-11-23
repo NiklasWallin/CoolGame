@@ -3,7 +3,9 @@ import QtQuick 2.0
 
 AppImage{
     id:theimage
+    property bool changedImage: false
     property alias imageWidth: theimage.width
     property alias imageHeight: theimage.height
-    source: "../assets/vplay-logo.png"
+
+    source: theimage.source;
 }

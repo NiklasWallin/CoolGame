@@ -21,7 +21,6 @@ App {
                     welcomepage.navigationStack.push(Qt.resolvedUrl(("gamepage.qml")))
                 }
             }
-
         }
     }
 }
