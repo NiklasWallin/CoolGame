@@ -1,7 +1,6 @@
 import VPlayApps 1.0
 import QtQuick 2.0
 
-
 Page {
     id:gamepage
         title: "Game page"
@@ -14,32 +13,24 @@ Page {
 
             MyImage{
                 id:image1
+                property bool isLocked: false
                 imageWidth: (gamepage.width / 10) * 2
                 imageHeight: (gamepage.height / 10) * 2
                 source: "../assets/vplay-logo.png"
             }
             MyImage{
                 id:image2
+                property bool isLocked: false
                 imageWidth: (gamepage.width / 10) * 2
                 imageHeight: (gamepage.height / 10) * 2
                 source: "../assets/vplay-logo.png"
             }
             MyImage{
-                property bool changedTest: true
                 id:image3
+                property bool isLocked: false
                 imageWidth: (gamepage.width / 10) * 2
                 imageHeight: (gamepage.height / 10) * 2
                 source: "../assets/vplay-logo.png"
-                /*{
-                    if(image3.changedTest == true){
-                        image3.source = "../assets/apple.png"
-                        changedImage = false
-                    }else{
-                        image3.source = "../assets/vplay-logo.png"
-                    }
-                }*/
-
-
             }
         }
 
@@ -49,49 +40,101 @@ Page {
             y:(parent.height / 12 ) * 6.5
 
             MyButton {
-                buttonWidth : (gamepage.width / 10) * 1
-                buttonHeight: (gamepage.height / 12) * 1
-                buttonText: "Unlocked"
-            }
-            MyButton {
-                buttonWidth : (gamepage.width / 10) * 1
-                buttonHeight: (gamepage.height / 12) * 1
-                buttonText: "Unlocked"
-            }
-            MyButton {
+                id:button1
                 buttonWidth : (gamepage.width / 10) * 1
                 buttonHeight: (gamepage.height / 12) * 1
                 buttonText: "Unlocked"
                 onClicked: {
-
+                    onClicked: {
+                        if(!spinnbutton.preSpinLocked){
+                            image1.isLocked = lockingImage(image1.isLocked);
+                            button1.buttonText = changeButtonText(image1.isLocked);
+                        }
+                    }
+                }
+            }
+            MyButton {
+                id:button2
+                buttonWidth : (gamepage.width / 10) * 1
+                buttonHeight: (gamepage.height / 12) * 1
+                buttonText: "Unlocked"
+                onClicked: {
+                    onClicked: {
+                        if(!spinnbutton.preSpinLocked){
+                            image2.isLocked = lockingImage(image2.isLocked);
+                            button2.buttonText = changeButtonText(image2.isLocked);
+                        }
+                    }
+                }
+            }
+            MyButton {
+                id:button3
+                buttonWidth : (gamepage.width / 10) * 1
+                buttonHeight: (gamepage.height / 12) * 1
+                buttonText: "Unlocked"
+                onClicked: {
+                    if(!spinnbutton.preSpinLocked){
+                        image3.isLocked = lockingImage(image3.isLocked);
+                        button3.buttonText = changeButtonText(image3.isLocked);
+                    }
                 }
             }
         }
 
         MyButton {
             id:spinnbutton
+            property bool preSpinLocked: false
             x:(gamepage.width / 10) * 3
             y:(parent.height / 12 ) * 9.5
             buttonWidth : (gamepage.width / 10) * 4
             buttonHeight: (gamepage.height / 12) * 2
             buttonText: "Spin"
             onClicked: {
+                if(!spinnbutton.preSpinLocked){
+                    if(image1.isLocked == false)
+                        image1.source = getImage()
+                    if(image2.isLocked == false)
+                        image2.source = getImage()
+                    if(image3.isLocked == false)
+                        image3.source = getImage()
+                }else{
+                    spinnbutton.preSpinLocked = false;
 
-                image1.source = getNewSource(image1.changedImage)
-                image1.changedImage = !image1.changedImage          //gör såhe
+                    image1.source = getImage();
+                    image2.source = getImage();
+                    image3.source = getImage();
 
-                image2.source = getNewSource(image2.changedImage)
-                image2.changedImage = !image2.changedImage
+                    image1.isLocked = false;
+                    image2.isLocked = false;
+                    image3.isLocked = false;
 
-                image3.source = getNewSource(image3.changedImage)
-                image3.changedImage = !image3.changedImage
+                    button1.buttonText = changeButtonText(false)
+                    button2.buttonText = changeButtonText(false)
+                    button3.buttonText = changeButtonText(false)
+                }
+                spinnbutton.preSpinLocked = wasImagesLocked(image1.isLocked,image2.isLocked,image3.isLocked)
             }
         }
 
-        function getRandomInt() {
-            var number = Math.floor(Math.random() % 6).toString();
-            alert(number);
-            return number;
+
+        function getImage() {
+            var number = Math.floor((Math.random()*100000) % 31);
+            var imageSource = "";
+
+            if(number <= 2)
+                imageSource = "../assets/vplay-logo.png";
+            else if(number <= 10)
+                imageSource = "../assets/apple.png"
+            else if(number <= 15)
+                imageSource = "../assets/orange.png"
+            else if(number <= 20)
+                imageSource = "../assets/watermelon.png"
+            else if(number <= 25)
+                imageSource = "../assets/raspberry.jpg"
+            else if(number <= 30)
+                imageSource = "../assets/banana.jpg"
+
+            return imageSource;
         }
 
         function getNewSource(test){
@@ -104,7 +147,30 @@ Page {
             return newSource;
 
         }
-    }
 
+        function changeButtonText(t){
+            var text = "";
+            if(t == true)
+                text = "Locked";
+            else
+                text = "Unlocked";
+            return text;
+        }
+
+        function lockingImage(lValue){
+            if(lValue == true)
+                lValue = false;
+            else
+                lValue = true;
+            return lValue;
+        }
+
+        function wasImagesLocked(a,b,c){
+            if(a == true || b == true || c == true)
+                return true;
+            else
+                return false;
+        }
+    }
 
 
