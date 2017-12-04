@@ -46,4 +46,6 @@ macx {
 DISTFILES += \
     qml/MyButton.qml \
     qml/gamepage.qml \
-    qml/MyImage.qml
+    qml/MyImage.qml \
+    qml/MyAnimation.qml \
+    qml/JSfunctions.js

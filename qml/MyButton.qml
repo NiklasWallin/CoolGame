@@ -8,7 +8,6 @@ AppButton{
     property alias buttonWidth: thebutton.width
     property alias buttonHeight: thebutton.height
     property alias buttonText: thebutton.text
-
     //signal clicked
 
     MouseArea{
