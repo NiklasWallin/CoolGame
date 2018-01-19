@@ -6,6 +6,7 @@ AppImage{
     property bool changedImage: false
     property alias imageWidth: theimage.width
     property alias imageHeight: theimage.height
+    property alias imageSource: theimage.source
 
     source: theimage.source;
 }

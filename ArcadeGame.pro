@@ -48,4 +48,7 @@ DISTFILES += \
     qml/gamepage.qml \
     qml/MyImage.qml \
     qml/MyAnimation.qml \
-    qml/JSfunctions.js
+    qml/JSfunctions.js \
+    qml/MyFadeAnimation.qml \
+    qml/MyAppearAnimation.qml \
+    qml/WinningAnimation.qml

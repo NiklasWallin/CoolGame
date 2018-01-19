@@ -1,20 +1,20 @@
 .pragma library
 
 function getImage() {
-    var number = Math.floor((Math.random()*100000) % 31);
+    var number = Math.floor((Math.random()*100000) % 28);
     var imageSource = "";
 
-    if(number <= 2)
+    if(number < 2)
         imageSource = "../assets/vplay-logo.png";
-    else if(number <= 10)
+    else if(number < 7)
         imageSource = "../assets/apple.png"
-    else if(number <= 15)
+    else if(number < 12)
         imageSource = "../assets/orange.png"
-    else if(number <= 20)
+    else if(number < 17)
         imageSource = "../assets/watermelon.png"
-    else if(number <= 25)
+    else if(number < 23)
         imageSource = "../assets/raspberry.jpg"
-    else if(number <= 30)
+    else if(number < 28)
         imageSource = "../assets/banana.jpg"
 
     return imageSource;
@@ -44,3 +44,12 @@ function wasImagesLocked(a,b,c){
     else
         return false;
 }
+
+function checkIfWin(source1, source2, source3){
+    var winning = false;
+    if(source1 == source2 && source2 == source3)
+        winning = true;
+
+    return winning
+}
+
