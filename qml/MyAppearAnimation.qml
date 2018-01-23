@@ -3,6 +3,7 @@ import QtQuick 2.0
 
 ParallelAnimation{
     id:appearAni
+    alwaysRunToEnd: true
     property alias appearAniRunning: appearAni.running
     property alias appearAniTarget : innerAppear.target
     loops:1
@@ -12,13 +13,13 @@ ParallelAnimation{
         property: "y"
         from:50
         to:0
-        duration: 200
+        duration: 500
     }
     NumberAnimation{
         target: innerAppear.target
         property: "opacity"
         from:0.0
         to:1.0
-        duration: 200
+        duration: 500
     }
 }

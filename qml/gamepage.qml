@@ -1,6 +1,5 @@
 import VPlayApps 1.0
 import QtQuick 2.0
-
 import "JSfunctions.js" as Logic
 
 Page {
@@ -143,6 +142,7 @@ Page {
             }else{
                 spinnbutton.preSpinLocked = false;
 
+
                 image1.source = Logic.getImage();
                 image2.source = Logic.getImage();
                 image3.source = Logic.getImage();
@@ -167,9 +167,14 @@ Page {
                 winning1.winningRunning = true;
                 winning2.winningRunning = true;
                 winning3.winningRunning = true;
+                preSpinLocked = true;
+                button1.buttonText = "Unlockable!"
+                button2.buttonText = "Unlockable!"
+                button3.buttonText = "Unlockable!"
                 gamepage.threeInRow = false;
             }
         }
+
     }
 }
 
