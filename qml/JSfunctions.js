@@ -7,15 +7,15 @@ function getImage() {
     if(number < 2)
         imageSource = "../assets/vplay-logo.png";
     else if(number < 7)
-        imageSource = "../assets/apple.png"
+        imageSource = "../assets/apple"
     else if(number < 12)
-        imageSource = "../assets/orange.png"
+        imageSource = "../assets/orange"
     else if(number < 17)
-        imageSource = "../assets/watermelon.png"
+        imageSource = "../assets/watermelon"
     else if(number < 23)
-        imageSource = "../assets/raspberry.jpg"
+        imageSource = "../assets/raspberry"
     else if(number < 28)
-        imageSource = "../assets/banana.jpg"
+        imageSource = "../assets/banana"
 
     return imageSource;
 }
